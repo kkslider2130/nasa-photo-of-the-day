@@ -31,3 +31,120 @@
     transform: rotate(360deg);
   }
 }
+
+header {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  height: 20vh;
+}
+
+header img {
+  height: 12vh;
+  padding-top: 0.6rem;
+}
+
+header p {
+  color: white;
+  height: 4vh;
+  font-family: "Oswald";
+  margin-top: 0.5rem;
+}
+
+.main {
+  background-color: rgb(212, 197, 197);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.date-con {
+  width: 100%;
+  background-color: white;
+  margin-top: 2rem;
+}
+
+.date-con p {
+  font-family: "Oswald";
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.main img {
+  height: 80%;
+  width: 80%;
+  margin-top: 2rem;
+}
+
+.contents p {
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  font-family: "Poppins";
+  padding: 2rem;
+  background-color: white;
+}
+
+footer {
+  display: flex;
+  background-color: black;
+  height: 14vh;
+  align-items: center;
+}
+
+footer i {
+  color: red;
+  padding-left: 2rem;
+  font-size: 3rem;
+}
+
+footer .cr {
+  color: white;
+  width: 70%;
+  margin-left: 18rem;
+  font-family: "Oswald";
+}
+
+.footer-icons {
+  width: 25%;
+}
+
+@media (max-width: 1000px) {
+  footer .cr {
+    margin-left: 10rem;
+  }
+}
+@media (max-width: 800px) {
+  footer .cr {
+    margin-left: 5rem;
+  }
+}
+@media (max-width: 690px) {
+  footer .cr {
+    width: 50%;
+    margin-left: 6rem;
+  }
+  footer i {
+    font-size: 3rem;
+    padding-left: 1rem;
+  }
+}
+@media (max-width: 600px) {
+  footer .cr {
+    width: 50%;
+  }
+  footer i {
+    font-size: 3rem;
+    padding-left: 1rem;
+  }
+}
+@media (max-width: 520px) {
+  footer .cr {
+    width: 50%;
+  }
+  footer i {
+    font-size: 2rem;
+    padding-left: 1rem;
+  }
+}
