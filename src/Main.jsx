@@ -1,29 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MainDiv, { MainImg, ContentPara } from "../src/style/MainStyles";
+import Picture from "./Picture";
 import DatePicker from "react-datepicker";
+import Loader from "react-loader-spinner";
+
 import "react-datepicker/dist/react-datepicker.css";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 axios
   .get(
     "https://api.nasa.gov/planetary/apod?api_key=2CuqxZAJGsqU820I1TaRLIyaBYlhVaW4p9woRwx3"
   )
   .then(res => console.log(res.data.hdurl));
-
-function CallPicture() {
-  const [picture, setPicture] = useState("");
-  useEffect(() => {
-    const getPicture = () => {
-      axios
-        .get(
-          "https://api.nasa.gov/planetary/apod?api_key=2CuqxZAJGsqU820I1TaRLIyaBYlhVaW4p9woRwx3"
-        )
-        .then(res => setPicture(res.data.hdurl));
-    };
-    getPicture();
-  }, []);
-  return picture;
-}
 
 function CallContent() {
   const [content, setContent] = useState("");
@@ -83,10 +72,18 @@ function Main() {
 
   const [startDate, setStartDate] = useState(new Date());
   const [useCalendar, setUseCalander] = useState(true);
+  const [loading, setLoading] = useState(true);
+
+  const handleLoad = () => {
+    setLoading(false);
+  };
+
   let handleDateChange = date => {
+    setLoading(true);
     setStartDate(date);
     setUseCalander(false);
   };
+
   let calanderDate =
     startDate.getFullYear() +
     "-" +
@@ -96,14 +93,23 @@ function Main() {
 
   const newPicture = CallNewPicture(calanderDate);
   const newContent = CallNewContent(calanderDate);
-  const picture = CallPicture();
   const content = CallContent();
   return (
     <MainDiv>
       <div className="date-con">
         <p>{calanderDate}</p>
       </div>
-      <MainImg src={useCalendar ? picture : newPicture} alt="astrology daily" />
+      {/*       <MainImg src={useCalendar ? picture : newPicture} alt="astrology daily" />
+       */}
+
+      {useCalendar ? (
+        <Picture handleLoad={handleLoad} />
+      ) : (
+        <MainImg onLoad={handleLoad} src={newPicture} />
+      )}
+      {loading && (
+        <Loader type="Rings" color="#00BFFF" height={100} width={100} />
+      )}
       <div>
         <ContentPara>
           <div>{useCalendar ? content : newContent}</div>
