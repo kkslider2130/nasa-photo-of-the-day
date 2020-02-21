@@ -73,9 +73,11 @@ function Main() {
   const [startDate, setStartDate] = useState(new Date());
   const [useCalendar, setUseCalander] = useState(true);
   const [loading, setLoading] = useState(true);
+  const [visible, setVisible] = useState(true);
 
   const handleLoad = () => {
     setLoading(false);
+    setVisible(false);
   };
 
   let handleDateChange = date => {
@@ -99,17 +101,16 @@ function Main() {
       <div className="date-con">
         <p>{calanderDate}</p>
       </div>
-      {/*       <MainImg src={useCalendar ? picture : newPicture} alt="astrology daily" />
-       */}
 
-      {useCalendar ? (
-        <Picture handleLoad={handleLoad} />
+      {loading ? (
+        <>
+          <Picture handleLoad={handleLoad} setVisible={setVisible} />
+          <Loader type="Rings" color="#00BFFF" height={100} width={100} />
+        </>
       ) : (
-        <MainImg onLoad={handleLoad} src={newPicture} />
+        !visible && <MainImg onLoad={handleLoad} src={newPicture} />
       )}
-      {loading && (
-        <Loader type="Rings" color="#00BFFF" height={100} width={100} />
-      )}
+
       <div>
         <ContentPara>
           <div>{useCalendar ? content : newContent}</div>
