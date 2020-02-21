@@ -10,8 +10,8 @@ const MainDiv = styled.div`
 `;
 
 const MainImg = styled.img`
-  height: 80%;
-  width: 80%;
+  height: 65%;
+  width: 65%;
   margin-top: 2rem;
   @media (max-width: 850px) {
     height: 75%;
